@@ -1,0 +1,118 @@
+### Cafe Management System - API Test File
+### Use this file with REST Client extension in VS Code or import to Postman/Insomnia
+
+### Variables (Update these as needed)
+@baseUrl = http://localhost:5000
+@token = YOUR_TOKEN_HERE
+
+### ==========================================
+### HEALTH CHECK
+### ==========================================
+
+### Check if server is running
+GET {{baseUrl}}/
+Content-Type: application/json
+
+### ==========================================
+### AUTHENTICATION TESTS
+### ==========================================
+
+### 1. Register a new customer
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123",
+  "phone": "1234567890",
+  "role": "customer"
+}
+
+### 2. Register a staff member
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Jane Staff",
+  "email": "jane.staff@cafe.com",
+  "password": "staff123",
+  "phone": "0987654321",
+  "role": "staff"
+}
+
+### 3. Register an admin
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Admin User",
+  "email": "admin@cafe.com",
+  "password": "admin123",
+  "phone": "5555555555",
+  "role": "admin"
+}
+
+### 4. Login with customer
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+### 5. Login with staff
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "jane.staff@cafe.com",
+  "password": "staff123"
+}
+
+### 6. Login with admin
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@cafe.com",
+  "password": "admin123"
+}
+
+### 7. Get user profile (requires token)
+### First login and copy the token to the @token variable above
+GET {{baseUrl}}/api/auth/profile
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### ==========================================
+### ERROR CASES
+### ==========================================
+
+### Login with wrong password
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "wrongpassword"
+}
+
+### Login with non-existent user
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "notexist@example.com",
+  "password": "password123"
+}
+
+### Try to access protected route without token
+GET {{baseUrl}}/api/auth/profile
+Content-Type: application/json
+
+### Try to access protected route with invalid token
+GET {{baseUrl}}/api/auth/profile
+Content-Type: application/json
+Authorization: Bearer invalid_token_here

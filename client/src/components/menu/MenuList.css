@@ -1,0 +1,54 @@
+/* Menu List - Compact Grid */
+.menu-list-restaurant {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+  animation: listFadeIn 0.8s ease-out;
+}
+
+@keyframes listFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.no-items-found {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: #C9B8A9;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.2rem;
+  background: rgba(26, 20, 16, 0.7);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(212, 165, 116, 0.3);
+  border-radius: 18px;
+  margin: 2rem 0;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .menu-list-restaurant {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-list-restaurant {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+  }
+
+  .no-items-found {
+    padding: 2.5rem 1.5rem;
+    font-size: 1.1rem;
+  }
+}

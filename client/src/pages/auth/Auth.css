@@ -1,0 +1,491 @@
+/* ══════════════════════════════════════════════
+   Auth Pages  —  Café Bliss Design System
+   Matches: dark #1a1410 bg · gold #D4A574 · cream #F5E6D3
+   Fonts: Playfair Display (headings) · Lato (body)
+   ══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+
+/* ── Page wrapper ── */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  font-family: 'Lato', sans-serif;
+  background: #1a1410;
+}
+
+/* ── Left panel — full-bleed café photo ── */
+.auth-image-panel {
+  display: none;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .auth-image-panel { display: block; }
+}
+
+.auth-image-panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Dark gradient over photo so quote text is readable */
+.auth-image-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(26, 20, 16, 0.55) 0%,
+    rgba(26, 20, 16, 0.25) 50%,
+    rgba(26, 20, 16, 0.70) 100%
+  );
+}
+
+/* Quote overlay on the image */
+.auth-image-quote {
+  position: absolute;
+  bottom: 3.5rem;
+  left: 3rem;
+  right: 3rem;
+  z-index: 2;
+  color: #F5E6D3;
+}
+
+.auth-image-quote blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 0 0 0.75rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.auth-image-quote cite {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #D4A574;
+  font-style: normal;
+}
+
+/* ── Right panel — the form side ── */
+.auth-form-panel {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  position: relative;
+  background: #1a1410;
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .auth-form-panel {
+    flex: 0 0 480px;
+    padding: 3rem 3.5rem;
+  }
+}
+
+/* Ambient warm glow behind the card */
+.auth-form-panel::before {
+  content: '';
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  top: -80px;
+  right: -80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 165, 116, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.auth-form-panel::after {
+  content: '';
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  bottom: -60px;
+  left: -60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 69, 19, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Glass card ── */
+.auth-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 420px;
+
+  background: rgba(245, 230, 211, 0.05);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+
+  border: 1px solid rgba(212, 165, 116, 0.2);
+  border-radius: 22px;
+  padding: 3rem 2.5rem;
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 24px 64px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(212, 165, 116, 0.18);
+
+  animation: cardIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(40px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+/* ── Header ── */
+.auth-header {
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+
+/* Small café wordmark above title */
+.auth-brand {
+  display: inline-block;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #D4A574;
+  margin-bottom: 0.9rem;
+  animation: fadeUp 0.5s ease 0.1s both;
+}
+
+.auth-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.15rem;
+  font-weight: 700;
+  color: #F5E6D3;
+  margin: 0 0 0.45rem;
+  letter-spacing: -0.01em;
+  animation: fadeUp 0.5s ease 0.2s both;
+}
+
+.auth-subtitle {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: rgba(245, 230, 211, 0.55);
+  animation: fadeUp 0.5s ease 0.3s both;
+}
+
+/* Thin gold rule under header */
+.auth-rule {
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #D4A574, transparent);
+  margin: 1.1rem auto 0;
+  border: none;
+  animation: expandRule 0.8s ease 0.4s both;
+}
+
+@keyframes expandRule {
+  from { width: 0; opacity: 0; }
+  to   { width: 48px; opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Error banner ── */
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(220, 53, 69, 0.14);
+  border: 1px solid rgba(220, 53, 69, 0.35);
+  color: #f5a0a8;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.error-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60%  { transform: translateX(-6px); }
+  40%, 80%  { transform: translateX(6px); }
+}
+.animate-shake { animation: shake 0.45s ease; }
+
+/* ── Form ── */
+.auth-form { margin-bottom: 1.25rem; }
+
+/* ── Input group ── */
+.input-group {
+  position: relative;
+  margin-bottom: 1.75rem;
+  animation: fadeUp 0.45s ease both;
+}
+
+.input-group:nth-child(1) { animation-delay: 0.40s; }
+.input-group:nth-child(2) { animation-delay: 0.48s; }
+.input-group:nth-child(3) { animation-delay: 0.56s; }
+.input-group:nth-child(4) { animation-delay: 0.64s; }
+
+/* Hide the emoji icon span entirely */
+.input-icon { display: none; }
+
+.input-group label {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #D4A574;
+  margin-bottom: 0.45rem;
+  /* Override floating behaviour — labels sit above the field */
+  position: static;
+  transform: none;
+  pointer-events: auto;
+  transition: none;
+}
+
+.input-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.85rem 1rem;
+  padding-left: 1rem;               /* no icon offset needed */
+
+  /* Slightly lighter glass so text pops */
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(212, 165, 116, 0.25);
+  border-radius: 10px;
+
+  /* Clearly readable cream text */
+  color: #F5E6D3;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.97rem;
+  font-weight: 400;
+
+  outline: none;
+  transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+
+.input-group input::placeholder {
+  color: rgba(245, 230, 211, 0.35);
+  font-weight: 300;
+}
+
+/* Autofill fix */
+.input-group input:-webkit-autofill,
+.input-group input:-webkit-autofill:hover,
+.input-group input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #2a1f16 inset;
+  -webkit-text-fill-color: #F5E6D3;
+  border-radius: 10px;
+  border-color: rgba(212, 165, 116, 0.4);
+}
+
+.input-group input:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #D4A574;
+  box-shadow:
+    0 0 0 3px rgba(212, 165, 116, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Kill the floating-label CSS for active state that hides original label */
+.input-group.active label,
+.input-group input:focus + label {
+  /* reset everything — label is static above the input */
+  position: static;
+  transform: none;
+  top: auto;
+  left: auto;
+  font-size: 0.72rem;
+  color: #D4A574;
+  background: transparent;
+}
+
+/* Hide animated underline — not needed with bordered inputs */
+.input-underline { display: none; }
+
+/* ── Submit button ── */
+.auth-btn {
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  background: linear-gradient(135deg, #D4A574 0%, #B8946F 100%);
+  color: #1a1410;
+
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  box-shadow:
+    0 6px 20px rgba(212, 165, 116, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: fadeUp 0.45s ease 0.75s both;
+}
+
+/* Shimmer sweep */
+.auth-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -110%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.55s ease;
+}
+.auth-btn:hover::before { left: 160%; }
+
+.auth-btn:hover {
+  transform: translateY(-3px) scale(1.015);
+  box-shadow:
+    0 12px 30px rgba(212, 165, 116, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.auth-btn:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.btn-arrow {
+  font-size: 1.1rem;
+  transition: transform 0.25s ease;
+}
+.auth-btn:hover .btn-arrow { transform: translateX(5px); }
+
+.btn-spinner {
+  display: inline-block;
+  font-size: 1.1rem;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.auth-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: 0 6px 20px rgba(212, 165, 116, 0.25) !important;
+}
+
+/* ── Divider ── */
+.auth-divider {
+  position: relative;
+  text-align: center;
+  margin: 1.75rem 0;
+  animation: fadeUp 0.45s ease 0.85s both;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(212, 165, 116, 0.3), transparent);
+}
+.auth-divider::before { left: 0; }
+.auth-divider::after  { right: 0; }
+
+.auth-divider span {
+  padding: 0 1rem;
+  color: rgba(245, 230, 211, 0.3);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+/* ── Footer link ── */
+.auth-link {
+  text-align: center;
+  color: rgba(245, 230, 211, 0.5);
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin: 0;
+  animation: fadeUp 0.45s ease 0.95s both;
+}
+
+.link-highlight {
+  color: #D4A574;
+  text-decoration: none;
+  font-weight: 700;
+  margin-left: 0.35rem;
+  position: relative;
+  transition: color 0.25s;
+  display: inline-block;
+}
+
+.link-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, #D4A574, #F5E6D3);
+  border-radius: 1px;
+  transition: width 0.3s ease;
+}
+.link-highlight:hover { color: #F5E6D3; }
+.link-highlight:hover::after { width: 100%; }
+
+/* ── Focus visible accessibility ── */
+.auth-btn:focus-visible,
+.link-highlight:focus-visible {
+  outline: 2px solid rgba(212, 165, 116, 0.65);
+  outline-offset: 3px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 520px) {
+  .auth-form-panel { padding: 1.5rem 1.25rem; }
+
+  .auth-container {
+    padding: 2.25rem 1.5rem;
+    border-radius: 18px;
+  }
+
+  .auth-title   { font-size: 1.85rem; }
+  .auth-btn     { font-size: 0.9rem; padding: 0.9rem 1rem; }
+}
