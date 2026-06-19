@@ -66,4 +66,25 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET /api/seed/make-admin?email=yourmail@gmail.com — promote user to admin
+router.get('/make-admin', async (req, res) => {
+  try {
+    const { email } = req.query;
+    if (!email) {
+      return res.status(400).json({ error: 'Provide email as query param: /api/seed/make-admin?email=yourmail@gmail.com' });
+    }
+    const user = await User.findOneAndUpdate(
+      { email },
+      { role: 'admin' },
+      { new: true }
+    );
+    if (!user) {
+      return res.status(404).json({ error: `No user found with email: ${email}` });
+    }
+    res.json({ success: true, message: `${email} is now an admin`, user: { name: user.name, email: user.email, role: user.role } });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 export default router;
