@@ -11,6 +11,7 @@ import menuRoutes from './routes/menuRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import reservationRoutes from './routes/reservationRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import seedRoute from './routes/seedRoute.js';
 
 dotenv.config();
 
@@ -116,6 +117,7 @@ app.use('/api/menu', menuRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/reservations', reservationRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/seed', seedRoute);
 
 // 404 handler
 app.use((req, res) => {
