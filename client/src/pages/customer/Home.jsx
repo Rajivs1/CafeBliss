@@ -5,6 +5,7 @@ import { Float } from '@react-three/drei';
 import * as THREE from 'three';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Reviews from '../../components/common/Reviews';
 import './Home.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -625,6 +626,9 @@ const Home = () => {
           </div>
         ))}
       </section>
+
+      {/* ── REVIEWS ──────────────────────────────────────────────────── */}
+      <Reviews />
 
       {/* ── FINAL CTA ────────────────────────────────────────────────── */}
       <section className="cta-section">
